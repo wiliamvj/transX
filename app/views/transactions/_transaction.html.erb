@@ -1,23 +1,13 @@
-<div id="<%= dom_id transaction %>" class="p-6 rounded-lg shadow-lg bg-white">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Date:</strong>
-    <%= transaction.date %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
+<div id="<%= dom_id transaction %>" 
+  class="flex p-6 rounded-lg shadow-lg bg-white <%= transaction.out_money? ? 'text-red-600' : 'text-green-600' %>"
+>
+  <span class="mr-2">
+    <%= l transaction.date %>
+  </span>
+  <span class="mr-2 flex-grow">
+    <%= number_to_currency transaction.transaction_value %>
+  </span>
+  <span class="mr-2">
     <%= transaction.description %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Transaction value:</strong>
-    <%= transaction.transaction_value %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Transaction type:</strong>
-    <%= transaction.transaction_type %>
-  </p>
-  <% if action_name != "show" %>
-    <%= link_to "Show this transaction", transaction, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this transaction', edit_transaction_path(transaction), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+  </span>
 </div>
