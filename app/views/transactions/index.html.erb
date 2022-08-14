@@ -1,20 +1,23 @@
 <div class="w-full">
   <% if notice.present? %>
-  <p
+    <p
     class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block"
     id="notice"
   >
-    <%= notice %>
-  </p>
+      <%= notice %>
+    </p>
   <% end %>
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Transactions</h1>
-    <%= link_to 'New transaction', new_transaction_path, class: "rounded-lg py-3
-    px-5 bg-blue-600 text-white block font-medium" %>
+  <div class="grid grid-cols-3 gap-3 mb-4">
+    <div class="p-6 rounded-lg shadow-lg bg-white">
+      <p>Saldo atual:</p>
+      <p class="text-2-xl font-bold text-zinc-800">
+        <%= number_to_currency @balance %>
+      </p>
+    </div>
+    <%= link_to new_transaction_path, 
+      class: "pt-7 rounded-lg py-3px-5 bg-blue-600 text-white block font-medium text-center" do %>
+      <span>Nova transação</span>
+    <% end %>
   </div>
-
   <div id="transactions" class="min-w-full"><%= render @transactions %></div>
-
-  <h2 class="text-2xl"><strong>Saldo atual:</strong> <%= @balance %></h2>
 </div>
