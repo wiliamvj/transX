@@ -30,6 +30,9 @@ gem "tailwindcss-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Devise is a flexible authentication solution for Rails based on Warden. It:
+gem "devise", "~> 4.2"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

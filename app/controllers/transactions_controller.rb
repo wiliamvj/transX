@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   before_action :set_transaction, only: %i[ destroy ]
 
   def index
-    @transactions = Transaction.order(date: :asc, created_at: :asc)
+    @transactions = Transaction.order(date: :desc, created_at: :desc)
     @balance = Transaction.total_money
   end
 
