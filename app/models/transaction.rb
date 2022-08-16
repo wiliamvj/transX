@@ -17,8 +17,9 @@ class Transaction < ApplicationRecord
   private
 
   def validate_is_there_money
+    return unless user
     return if deposit?
-    return if transaction_value.to_f <= Transaction.total_money
+    return if transaction_value.to_f <= user.transactions.total_money
     errors.add :transaction_value, "Without balance"
   end
 end

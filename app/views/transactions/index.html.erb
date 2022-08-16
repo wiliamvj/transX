@@ -18,6 +18,12 @@
       class: "pt-7 rounded-lg py-3px-5 bg-blue-600 text-white block font-medium text-center" do %>
       <span>Nova transação</span>
     <% end %>
+    <%= link_to destroy_user_session_path,
+      method: :delete,
+      class: "pt-4 rounded-lg py-3px-5 bg-blue-600 text-white block font-medium text-center" do %>
+      <span>Logado como <%= current_user.email %></span>
+      <span>Sair</span>
+    <% end %>
   </div>
   <div id="transactions" class="min-w-full grid grid-cols-1 gap-3"><%= render @transactions %></div>
 </div>
