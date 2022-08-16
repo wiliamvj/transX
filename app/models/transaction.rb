@@ -1,6 +1,8 @@
 class Transaction < ApplicationRecord
   enum :transaction_type, { out_money: "saida", deposit: "entrada" }
 
+  belongs_to :user
+
   validates :date, comparison: { less_than_or_equal_to: proc { Date.current } }
   validates :description, length: { maximum: 150 }
   validates :transaction_value, presence: true

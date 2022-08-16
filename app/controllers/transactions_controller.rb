@@ -1,9 +1,10 @@
 class TransactionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_transaction, only: %i[ destroy ]
 
   def index
-    @transactions = Transaction.order(date: :desc, created_at: :desc)
-    @balance = Transaction.total_money
+    @transactions = collection.order(date: :desc, created_at: :desc)
+    @balance = collection.total_money
   end
 
   # GET /transactions/new
@@ -13,7 +14,7 @@ class TransactionsController < ApplicationController
 
   # POST /transactions or /transactions.json
   def create
-    @transaction = Transaction.new(transaction_params)
+    @transaction = collection.new(transaction_params)
 
     respond_to do |format|
       if @transaction.save
@@ -37,9 +38,13 @@ class TransactionsController < ApplicationController
 
   private
 
+  def collection
+    current_user.transactions
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_transaction
-    @transaction = Transaction.find(params[:id])
+    @transaction = collection.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
